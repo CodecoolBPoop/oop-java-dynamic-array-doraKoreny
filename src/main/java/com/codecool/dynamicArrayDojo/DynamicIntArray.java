@@ -9,54 +9,40 @@ public class DynamicIntArray {
 
     private int intArray[] = new int[lengthOfIntArray];
 
-    public int getLengthOfIntArray() {
-        return lengthOfIntArray;
-    }
 
     public void setLengthOfIntArray(int lengthOfIntArray) {
         this.lengthOfIntArray = lengthOfIntArray;
     }
 
-    public int[] getIntArray() {
-        return intArray;
-    }
-
-    public void setIntArray(int[] intArray) {
-        this.intArray = intArray;
-    }
 
     public void add(int numberToAdd) {
         int[] extendedArray = new int[intArray.length + 1];
         System.arraycopy(intArray, 0, extendedArray, 0, intArray.length);
-        extendedArray[extendedArray.length-1] = numberToAdd;
+        extendedArray[extendedArray.length - 1] = numberToAdd;
         intArray = extendedArray;
     }
 
     public void remove(int indexToRemove) {
         if (indexToRemove <= intArray.length) {
             int[] decreasedArray = new int[intArray.length - 1];
-            System.arraycopy(intArray,0,decreasedArray,0,indexToRemove - 1);
-            System.arraycopy(intArray,indexToRemove + 1,decreasedArray, indexToRemove, intArray.length - indexToRemove);
+            System.arraycopy(intArray, 0, decreasedArray, 0, indexToRemove);
+            System.arraycopy(intArray, indexToRemove + 1, decreasedArray, indexToRemove, intArray.length - indexToRemove - 1);
             //System.out.println(Arrays.toString(decreasedArray));
 
             intArray = decreasedArray;
         }
-
-
     }
 
     public void insert(int index, int numberToInsert) {
         int[] insertedArray = new int[intArray.length + 1];
         if (index <= intArray.length) {
-            System.arraycopy(intArray, 0, insertedArray, 0,index );
+            System.arraycopy(intArray, 0, insertedArray, 0, index);
             insertedArray[index] = numberToInsert;
-            System.arraycopy(intArray,index , insertedArray, index + 1, intArray.length - index);
+            System.arraycopy(intArray, index, insertedArray, index + 1, intArray.length - index);
             intArray = insertedArray;
         } else {
             add(numberToInsert);
         }
-
-
     }
 
     @Override
@@ -73,6 +59,8 @@ public class DynamicIntArray {
         setLengthOfIntArray(arrayLength);
     }
 
-    public DynamicIntArray() {}
+    public DynamicIntArray() {
+
+    }
 
 }
